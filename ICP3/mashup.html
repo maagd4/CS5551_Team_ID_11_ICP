@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dietModule">
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Rectangle Mobile Template</title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <!--
+            Rectangle Template
+            http://www.templatemo.com/preview/templatemo_439_rectangle
+            -->
+            <link rel="stylesheet" href="css/normalize.css">
+            <link rel="stylesheet" href="css/font-awesome.css">
+            <link rel="stylesheet" href="css/bootstrap.min.css">
+            <link rel="stylesheet" href="css/templatemo-style.css">
+            <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+            <style type='text/css'>
+                .partition1 {
+                    width: 20%;
+                    float: left;
+                    margin-right: 10px;
+                }
+
+                .partition2 {
+                    width: 70%;
+                    float: right;
+                }
+
+                .partition-wrap {
+                    overflow: hidden;
+                    margin-bottom: 20px;
+                }
+
+                td {
+                    margin: 5px;
+                }
+
+            </style>
+
+            </head>
+
+<body ng-controller="homeController">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="site-bg"></div>
+<!--
+<div class="site-bg-overlay"></div>
+-->
+
+<!-- TOP HEADER -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="index.html">The Best Web Application Ever </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://goo.gl/DNTqG9"><i class="fa fa-facebook-f"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://goo.gl/e4LTRN"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://goo.gl/M34Fcp"><i class="fa fa-instagram"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://goo.gl/aLMtRk"><i class="fa fa-pinterest"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://goo.gl/SP6FT7"><i class="fa fa-tumblr"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header> <!-- .top-header -->
+
+<div class="container" id="page-content">
+    <div class="row">
+
+
+        <div class="col-md-9 col-sm-12 content-holder">
+            <!-- CONTENT -->
+            <div id="menu-container">
+
+
+                <div id="menu-1" class="homepage home-section text-center">
+                    <div class="welcome-text pull-left">
+                        <h2>Hello, Welcome to The best web application ever</h2>
+
+                        <div class="input-group">
+
+                            <input type="text" placeholder="Search for nutritious food here" ng-model="searchText"/>
+
+                            <a href="#" class="btn btn-primary">  Pronounce <i class="fa fa-volume-up"></i> </a>
+
+                            <a href="#" class="btn btn-primary" ng-click="testFunction()"> Search  </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Calories</th>
+                            <th>Servings (gm)</th>
+                        </tr> <tr>
+                        <td>{{Name}}</td>
+                        <td>{{Calories}}</td>
+                        <td>{{weight}}</td>
+                    </tr>
+
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    angular.module('dietModule', [])
+        .controller('homeController', ['$scope','$http', function($scope,$http) {
+
+            $scope.testFunction = function(){
+
+                $http.get('https://api.nutritionix.com/v1_1/search/'+$scope.searchText+'?results=0:1&fields=*&appId=c8bdf5a9&appKey=51a2ac75714c9dd976984baeef35a6f0').success( function (data) {
+                   $scope.Name = data.hits[0]['fields']['item_name'];
+                    $scope.Calories = data.hits[0]['fields']['nf_calories'];
+                    $scope.weight = data.hits[0]['fields']['nf_serving_weight_grams'];
+                } )
+            };
+
+        }]);
+</script>
+<script src="js/vendor/jquery-1.10.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular.js"></script>
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-resource.js"></script>
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-sanitize.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+<!--
+<script src="js/diet.js"></script>
+-->
+<script type="text/javascript" src="js/services.js"></script>
+<script src="js/googleOauth.js"></script>
+<script src="js/angularOauth.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://headervideo.github.io/hvheadervideo/css/fontawesome.min.css">
+<link href="https://headervideo.github.io/hvheadervideo/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://headervideo.github.io/hvheadervideo/css/mdb.min.css" rel="stylesheet">
+<link href="https://headervideo.github.io/hvheadervideo/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- templatemo 439 rectangle -->
+
+</body>
+</html>
